@@ -49,7 +49,7 @@ student-study-planner/
 
 ## Live Website
 
-Add your deployed GitHub Pages URL here after deployment.
+https://pathanfarhan-dev.github.io/Student_Study_Planner/
 
 ## Author
 
