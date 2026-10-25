@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A responsive study planner to organize subjects, plan study sessions, and track your progress.">
+
+    <title>StudyFlow | Student Study Planner</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#" class="logo">Study<span>Flow</span></a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#dashboard">Dashboard</a>
+                <a href="#planner">My Planner</a>
+                <a href="#subjects">Subjects</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section" id="dashboard">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+
+                <h1>Plan your day.<br>
+                    <span>Reach your goals.</span>
+                </h1>
+
+                <p class="welcome-text">
+                    Organize your study sessions, stay consistent,
+                    and make every study hour count.
+                </p>
+            </div>
+
+            <div class="date-card">
+                <span class="date-icon">📅</span>
+                <p id="todayDate">Today's date</p>
+                <h3 id="greeting">Welcome back!</h3>
+            </div>
+        </section>
+
+
+        <!-- Dashboard Statistics -->
+        <section class="stats-grid" aria-label="Study statistics">
+
+            <article class="stat-card">
+                <div class="stat-icon purple">📚</div>
+                <p>Total Sessions</p>
+                <h2 id="totalSessions">0</h2>
+                <span>Planned study sessions</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <p>Completed</p>
+                <h2 id="completedSessions">0</h2>
+                <span>Sessions finished</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+                <p>Pending</p>
+                <h2 id="pendingSessions">0</h2>
+                <span>Sessions to complete</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon blue">🎯</div>
+                <p>Progress</p>
+                <h2 id="progressPercentage">0%</h2>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- Main Planner Section -->
+        <section class="planner-section" id="planner">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STAY ORGANIZED</p>
+                    <h2>My Study Planner</h2>
+                    <p class="section-description">
+                        Add and manage your study sessions.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="showFormButton" type="button">
+                    + Add Session
+                </button>
+            </div>
+
+
+            <!-- Add/Edit Session Form -->
+            <section class="form-card" id="sessionFormCard" hidden>
+
+                <div class="form-heading">
+                    <h3 id="formTitle">Add a Study Session</h3>
+
+                    <button
+                        class="close-button"
+                        id="closeFormButton"
+                        type="button"
+                        aria-label="Close form"
+                    >✕</button>
+                </div>
+
+                <form id="sessionForm">
+
+                    <input type="hidden" id="sessionId">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="sessionTitle">Session Title *</label>
+
+                            <input
+                                type="text"
+                                id="sessionTitle"
+                                placeholder="e.g. Revise HTML"
+                                maxlength="80"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+
+                            <select id="subject" required>
+                                <option value="">Choose a subject</option>
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="Python">Python</option>
+                                <option value="Cloud Computing">Cloud Computing</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="sessionDate">Date *</label>
+                            <input type="date" id="sessionDate" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="sessionTime">Start Time *</label>
+                            <input type="time" id="sessionTime" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="duration">Duration *</label>
+
+                            <select id="duration" required>
+                                <option value="30">30 minutes</option>
+                                <option value="45">45 minutes</option>
+                                <option value="60" selected>1 hour</option>
+                                <option value="90">1.5 hours</option>
+                                <option value="120">2 hours</option>
+                                <option value="180">3 hours</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="priority">Priority *</label>
+
+                            <select id="priority" required>
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group full-width">
+                            <label for="sessionNotes">Notes (optional)</label>
+
+                            <textarea
+                                id="sessionNotes"
+                                rows="3"
+                                maxlength="300"
+                                placeholder="What do you want to study?"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="secondary-button" id="cancelButton" type="button">
+                            Cancel
+                        </button>
+
+                        <button class="primary-button" id="saveButton" type="submit">
+                            Save Session
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+
+            <!-- Search and Filter -->
+            <div class="toolbar">
+
+                <div class="search-box">
+                    <label class="visually-hidden" for="searchInput">
+                        Search study sessions
+                    </label>
+
+                    <span aria-hidden="true">⌕</span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search sessions or subjects..."
+                    >
+                </div>
+
+
+                <div class="filter-controls">
+
+                    <label class="visually-hidden" for="statusFilter">
+                        Filter by completion status
+                    </label>
+
+                    <select id="statusFilter">
+                        <option value="all">All Sessions</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                    </select>
+
+
+                    <label class="visually-hidden" for="priorityFilter">
+                        Filter by priority
+                    </label>
+
+                    <select id="priorityFilter">
+                        <option value="all">All Priorities</option>
+                        <option value="High">High Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sessions Appear Here -->
+            <div class="sessions-list" id="sessionsList" aria-live="polite">
+
+                <div class="empty-state">
+                    <div class="empty-icon">📖</div>
+                    <h3>No study sessions yet</h3>
+                    <p>Add your first session to start planning your day.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Subject Overview -->
+        <section class="subjects-section" id="subjects">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR LEARNING JOURNEY</p>
+                    <h2>Subject Overview</h2>
+                    <p class="section-description">
+                        See how many sessions you have planned for each subject.
+                    </p>
+                </div>
+            </div>
+
+            <div class="subjects-grid" id="subjectsGrid"></div>
+
+        </section>
+
+
+        <!-- Motivational Section -->
+        <section class="motivation-card">
+            <div>
+                <p class="eyebrow">A LITTLE REMINDER</p>
+                <h2>Small steps lead to big results.</h2>
+                <p>Consistency matters more than perfection. Keep learning!</p>
+            </div>
+
+            <div class="motivation-icon" aria-hidden="true">🌱</div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ for students | StudyFlow</p>
+            <p>Plan smart. Study consistently. Grow every day.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
